@@ -1,0 +1,10 @@
+---
+applications:
+- name: todos-service-broker
+  memory: 1G
+  instances: 1
+  buildpack: java_buildpack
+  path: target/todos-service-broker-0.0.1-SNAPSHOT.jar
+  env:
+    SECURITY_USER_NAME: admin
+    SECURITY_USER_PASSWORD: admin
