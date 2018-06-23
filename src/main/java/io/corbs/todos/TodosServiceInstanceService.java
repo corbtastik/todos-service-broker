@@ -24,12 +24,8 @@ public class TodosServiceInstanceService implements ServiceInstanceService {
     }
 
     @Override
-    public CreateServiceInstanceResponse createServiceInstance(CreateServiceInstanceRequest instanceRequest) {
-        // Create Frontend TodoUI and Backend TodoAPI as a Service Instance
-        // Each deployment can be sized differently
-        // Plan 1 - 25 Todos in memory
-        // Plan 2 - 25 Todos with Persistence
-        // Plan 3 - 25 Todos with Integrations
+    public CreateServiceInstanceResponse createServiceInstance(
+        CreateServiceInstanceRequest instanceRequest) {
         String serviceDefinitionId = instanceRequest.getServiceDefinitionId();
         String planId = instanceRequest.getPlanId();
         String instanceId = instanceRequest.getServiceInstanceId();
@@ -54,7 +50,8 @@ public class TodosServiceInstanceService implements ServiceInstanceService {
     }
 
     @Override
-    public GetServiceInstanceResponse getServiceInstance(GetServiceInstanceRequest request) {
+    public GetServiceInstanceResponse getServiceInstance(
+        GetServiceInstanceRequest request) {
         String instanceId = request.getServiceInstanceId();
         Optional<TodosServiceInstance> serviceInstance = instanceRepo.findById(instanceId);
         if(serviceInstance.isPresent()) {
@@ -70,7 +67,8 @@ public class TodosServiceInstanceService implements ServiceInstanceService {
     }
 
     @Override
-    public DeleteServiceInstanceResponse deleteServiceInstance(DeleteServiceInstanceRequest request) {
+    public DeleteServiceInstanceResponse deleteServiceInstance(
+        DeleteServiceInstanceRequest request) {
         String instanceId = request.getServiceInstanceId();
         if(instanceRepo.findById(instanceId).isPresent()) {
             instanceRepo.deleteById(instanceId);
@@ -79,5 +77,6 @@ public class TodosServiceInstanceService implements ServiceInstanceService {
             throw new ServiceInstanceDoesNotExistException(instanceId);
         }
     }
-
 }
+
+
